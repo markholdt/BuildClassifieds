@@ -17,7 +17,7 @@ namespace Classifieds.ServiceInterface
         {
           
             List<Listing> listings = new List<Listing>();
-            int pageSize = 20;
+            int pageSize = 10;
             int pageNr = request.PageNr ?? 1;
 
             int totalRecords = 0;

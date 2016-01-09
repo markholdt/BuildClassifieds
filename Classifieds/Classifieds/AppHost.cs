@@ -95,6 +95,21 @@ namespace Classifieds
                 l2.EmailAddress = "test@test.com";
                 l2.Title = "Some title here - very long indeed goes on and on";
                 db.Save(l2);
+                int count = 0;
+                while (count < 1000)
+                {
+                    count++;
+                    Listing list = new Listing
+                    {
+                        CategoryId = 2,
+                        City = "Windhoek",
+                        Description = count + "House is " + "Longasd asdkjhasd askdjhasdaks dasd " + count,
+                        EmailAddress = "test@test.com",
+                        Price = 10000000,
+                        Title = "Tile " +count
+                    };
+                    db.Save(list);
+                }
             }
 
         }

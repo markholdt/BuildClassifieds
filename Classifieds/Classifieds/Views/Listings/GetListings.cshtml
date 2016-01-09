@@ -33,7 +33,7 @@
                 <div class="row ">
 
                     <div class="col-sm-11 hidden-xs">
-                        <a class="btn btn-primary pull-right" id="regionsBtn" style="width: 100%">Greater London  <span class="caret"></span></a>
+                        <a class="btn btn-primary pull-right" id="regionsBtn" style="width: 100%">Windhoek  <span class="caret"></span></a>
                     </div>
 
                     <div data-backdrop="" id="regionsModal" class="bs-countries-modal-sm  hidden-xs" tabindex="-1" role="dialog" aria-labelledby="regionsModal" aria-hidden="true">
@@ -393,7 +393,8 @@
                                 <form class="form-inline mini"  action="~/@(new GetListings().ToGetUrl())" method="GET" style="margin-bottom: 0px;">
                                     <fieldset>
                                         <input type="hidden" name="CategoryId" value="@Model.CategoryId">
-                       
+                                        <input type="hidden" name="PageNr" value="1">
+
                                         <div class="row filter-row">
                                             <div class="col-sm-12">
                                                 <label>Price range</label>
@@ -837,22 +838,8 @@
             }
 
             <div>
-                <ul class="pagination pull-right">
-                    <li><a href="#">Prev</a></li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li class="hidden-xs"><a href="#">6</a></li>
-                    <li class="hidden-xs"><a href="#">7</a></li>
-                    <li class="hidden-sm hidden-xs"><a href="#">8</a></li>
-                    <li class="hidden-sm hidden-xs"><a href="#">9</a></li>
-                    <li class="hidden-sm hidden-xs"><a href="#">10</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
+                <ul id="pagination-demo" class="pagination pull-right"></ul>
+
             </div>
 
         </div>
@@ -933,4 +920,14 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<script src="~/scripts/jquery.twbsPagination.min.js"></script>
+<script type="text/javascript">
+    
+    $('#pagination-demo').twbsPagination({
+        totalPages: @Model.TotalPageCount,
+        visiblePages: 5,
+        startPage: @Model.CurrentPageNr,
+        href: '?' + document.URL.replace('PageNr=','').split('?')[1] + '&PageNr={{number}}' 
+    });
+</script>
 

@@ -201,6 +201,7 @@
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\jquery.flot.js" />
+    <Content Include="Scripts\jquery.twbsPagination.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
