@@ -1,0 +1,110 @@
+﻿
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Post</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="form-addcontact" action="~/@(new CreateListing().ToPostUrl())" method="POST">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Add photos</div>
+                        <div class="panel-body">
+                            <div id="my-dropzone" action="~/images/upload" class="dropzone">
+
+                            </div>
+                            <input type="hidden" value="" id="Files" name="Files"/>
+                            <br/>
+                            <p>
+                                <small>* please note that the displayed images are cropped/resized only for display purposes</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <label for="CategoryId">Category</label>
+                            <select class="form-control input-sm" id="CategoryId" name="CategoryId">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <label for="Title">Title</label>
+                            <input class="form-control input-sm" type="text" id="Title" name="Title" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <label for="Description">Description</label>
+                            <textarea class="form-control" rows="5" id="Description" value="" name="Description"></textarea>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <label for="EmailAddress">Email address</label>
+                            <input class="form-control input-sm" type="text" id="EmailAddress" name="EmailAddress" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <label for="City">City</label>
+                            <input class="form-control input-sm" type="text" id="City" name="City" value="">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        <button class="btn btn-sm btn-default" type="submit">Post FREE Ad</button>
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    Dropzone.autoDiscover = false;
+    $(function() {
+        // Now that the DOM is fully loaded, create the dropzone, and setup the
+        // event listeners
+        var myDropzone = new Dropzone('#my-dropzone', {
+            maxFilesize: 3.0,
+            maxFiles: 10,
+            parallelUploads: 1,
+            uploadMultiple: true,
+            autoProcessQueue: true
+        });
+        myDropzone.on("success", function (file) {
+            var value = $("#Files").val();
+
+            var responsetext = JSON.parse(file.xhr.responseText);
+            console.log(responsetext);
+
+            $("#Files").val(value + ';' + responsetext.Url);
+        });
+
+    });
+
+</script>
